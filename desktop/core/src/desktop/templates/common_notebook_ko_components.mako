@@ -14,25 +14,12 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
-<%!
-import logging
-from django.utils.translation import ugettext as _
-
-from desktop import conf
-from desktop.lib.i18n import smart_unicode
-from desktop.views import _ko
-from notebook.conf import ENABLE_SQL_INDEXER
-
-
-LOG = logging.getLogger(__name__)
-
-try:
-  from beeswax.conf import DOWNLOAD_ROW_LIMIT, DOWNLOAD_BYTES_LIMIT
-except ImportError, e:
-  LOG.warn("Hive app is not enabled")
-  DOWNLOAD_ROW_LIMIT = None
-  DOWNLOAD_BYTES_LIMIT = None
-%>
+<%! from django.utils.translation import ugettext as _ %>
+<%! from desktop import conf %>
+<%! from desktop.lib.i18n import smart_unicode %>
+<%! from desktop.views import _ko %>
+<%! from notebook.conf import ENABLE_SQL_INDEXER %>
+<%! from beeswax.conf import DOWNLOAD_ROW_LIMIT, DOWNLOAD_BYTES_LIMIT %>
 
 <%def name="addSnippetMenu()">
   <script type="text/html" id="add-snippet-menu-template">
