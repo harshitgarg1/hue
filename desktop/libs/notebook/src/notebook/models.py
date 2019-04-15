@@ -469,7 +469,7 @@ def _update_property_value(properties, key, value):
 class Anaytics():
 
   @classmethod
-  def admin_stats(self):
+  def admin_stats(cls):
     stats = []
     one_week = datetime.date.today() - timedelta(weeks=1)
     one_month = datetime.date.today() - timedelta(days=30)
@@ -483,5 +483,16 @@ class Anaytics():
     stats.append(('\nAll', ''))
     stats.append(('Active users 30 days', User.objects.filter(last_login__gte=one_month).count()))
     stats.append(('Active users 90 days', User.objects.filter(last_login__gte=three_months).count()))
+
+    return stats
+
+  @classmethod
+  def query_stats(cls, query_id):
+    stats = []
+
+    query = Document2.objects.get(id=id)
+    stats.append(('Query', '%s - %s' % (query.id, query.name)))
+    stats.append(('Executions', query.dependents.filter(is_history=True).count()))
+    stats.append(('Clones', query.dependents.filter(is_history=False).count()))
 
     return stats
